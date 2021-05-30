@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  gui-base:
+    build:
+      context: ./docker/base
+    image: med-tester-gui-base
+
+  app:
+    build:
+      context: ./docker/dev
+    working_dir: /var/www/element
+    image: med-tester-gui-dev
+    ports:
+      - "4201:4200"
+    volumes:
+      - .:/var/www/element
+    environment:
+      - VIRTUAL_HOST=medtester.dev.test
+      - VIRTUAL_PORT=4200
+      - VIRTUAL_PROTO=http
+    networks:
+      - default
