@@ -11,12 +11,8 @@ services:
     working_dir: /var/www/med-tester
     image: med-tester-gui-dev
     ports:
-      - "4201:4200"
+      - "15151:4200"
     volumes:
       - .:/var/www/med-tester
-    environment:
-      - VIRTUAL_HOST=medtester.app.dev
-      - VIRTUAL_PORT=4200
-      - VIRTUAL_PROTO=http
     networks:
       - default
