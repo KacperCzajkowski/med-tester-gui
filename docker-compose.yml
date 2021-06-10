@@ -8,15 +8,11 @@ services:
   app:
     build:
       context: ./docker/dev
-    working_dir: /var/www/element
+    working_dir: /var/www/med-tester
     image: med-tester-gui-dev
     ports:
-      - "4201:4200"
+      - "15151:4200"
     volumes:
-      - .:/var/www/element
-    environment:
-      - VIRTUAL_HOST=medtester.dev.test
-      - VIRTUAL_PORT=4200
-      - VIRTUAL_PROTO=http
+      - .:/var/www/med-tester
     networks:
       - default
