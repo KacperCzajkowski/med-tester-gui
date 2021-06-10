@@ -19,6 +19,6 @@ make up
 
 Uruchomienie kontenera jako demon
 ```
-make up_d
+make up_daemon
 ```
 
