@@ -1,0 +1,25 @@
+<div class="logo">tu będzie jakieś menu czy cos</div>
+<div class="example-container" [formGroup]="form">
+  <mat-label class="title">Logowanie</mat-label>
+  <mat-form-field appearance="fill">
+    <mat-label>Podaj swój email</mat-label>
+    <input matInput placeholder="pat@example.com" formControlName="email" required>
+    <mat-error *ngIf="form.hasEmailRequiredError()">
+      Email jest wymagany
+    </mat-error>
+    <mat-error *ngIf="form.hasEmailValidationError()">
+      Email jest nieprawidłowy
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Podaj swoje hasło</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="form.hasPasswordRequiredError()">
+      Hasło jest wymagane
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="login()">Zaloguj</button>
+</div>

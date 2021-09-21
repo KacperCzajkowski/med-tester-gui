@@ -11,12 +11,18 @@ services:
     working_dir: /var/www/element
     image: med-tester-gui-dev
     ports:
-      - "4201:4200"
+      - "4200"
     volumes:
       - .:/var/www/element
     environment:
-      - VIRTUAL_HOST=medtester.dev.test
+      - VIRTUAL_HOST=medtester.dev
       - VIRTUAL_PORT=4200
       - VIRTUAL_PROTO=http
     networks:
       - default
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
