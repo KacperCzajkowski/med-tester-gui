@@ -4,12 +4,14 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .logo {
   color: white;
   background-color: variables.$primary;
+  text-align: center;
+  padding: 1em;
 }
 
 .title {
