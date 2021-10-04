@@ -1,14 +1,22 @@
-bash:
-	docker-compose exec app bash
-up:
-	docker-compose stop
-	docker-compose build
-	docker-compose up
-up_daemon:
-	docker-compose stop
-	docker-compose build
-	docker-compose up -d
+SHELL := /bin/bash
+EXEC_COMMAND ?= docker-compose exec app
+
+install: create_networks build up install_npm
 build:
-	docker-compose stop
 	docker-compose build
-	docker-compose run app /bin/bash -c "ng analytics off && npm install --force"
+install_npm:
+	${EXEC_COMMAND} npm ci
+up:
+	docker-compose up -d
+bash:
+	${EXEC_COMMAND} bash
+fix_lint:
+	${EXEC_COMMAND} npx ng lint --fix
+check:
+	${EXEC_COMMAND} npx ng lint
+test:
+	${EXEC_COMMAND} npx jest --ci
+create_networks:
+	docker network create nginx-proxy || true
+clear:
+	docker-compose down

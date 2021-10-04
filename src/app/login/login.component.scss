@@ -1,0 +1,24 @@
+@use '../../styles/variables';
+
+.example-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.logo {
+  color: white;
+  background-color: variables.$primary;
+  text-align: center;
+  padding: 1em;
+}
+
+.title {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+mat-form-field {
+  margin-bottom: 10px;
+}

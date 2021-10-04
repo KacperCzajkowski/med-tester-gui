@@ -8,11 +8,21 @@ services:
   app:
     build:
       context: ./docker/dev
-    working_dir: /var/www/med-tester
+    working_dir: /var/www/element
     image: med-tester-gui-dev
     ports:
-      - "15151:4200"
+      - "4200"
     volumes:
-      - .:/var/www/med-tester
+      - .:/var/www/element
+    environment:
+      - VIRTUAL_HOST=medtester.dev
+      - VIRTUAL_PORT=4200
+      - VIRTUAL_PROTO=http
     networks:
       - default
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
