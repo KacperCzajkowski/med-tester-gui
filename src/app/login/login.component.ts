@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoginForm } from './model/login-form';
 import { LoginService } from '../shared/service/login.service';
-import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
   form = new LoginForm();
-  hide = true;
+  // hide = true;
+  togglePasswordSubject$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     private readonly loginService: LoginService,
@@ -20,19 +22,16 @@ export class LoginComponent {
   ) {
   }
 
-  getErrorMessage() {
-    if (this.form.getEmailControl().hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.form.getEmailControl().hasError('email') ? 'Not a valid email' : '';
-  }
-
   login(): void {
     if (this.form.isValid()) {
       const data = this.form.getDataAsLoginProperties();
 
+      //todo adding exception handling
       this.loginService.login(data).subscribe(() => this.router.navigate(['panel']));
     }
+  }
+
+  togglePassword(): void {
+    this.togglePasswordSubject$.pipe(take(1)).subscribe(value => this.togglePasswordSubject$.next(!value));
   }
 }

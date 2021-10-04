@@ -19,9 +19,9 @@
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Podaj swoje hasło</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input matInput [type]="(togglePasswordSubject$ | async) ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="togglePassword()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="togglePasswordSubject$">
+      <mat-icon>{{togglePasswordSubject$ ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
     <mat-error *ngIf="form.hasPasswordRequiredError()">
       Hasło jest wymagane
