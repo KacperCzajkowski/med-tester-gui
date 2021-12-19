@@ -1,14 +1,14 @@
 <div>
-  <div>
-    <div>
-      top navigation
-    </div>
-    <button class="col" (click)="logout()">wyloguj</button>
-  </div>
-  <div>
-    menu admin
-  </div>
-  <div>title</div>
-  <router-outlet></router-outlet>
-  <div>footer</div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="toolbar-flex">
+      <span>Medtester</span>
+      <div class="buttons-group">
+        <button mat-button class="menu-button">Panel</button>
+        <button mat-button class="menu-button">Moje badania</button>
+        <button mat-button class="menu-button">Konto</button>
+        <button mat-button class="menu-button">Wyloguj</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>
+<router-outlet></router-outlet>

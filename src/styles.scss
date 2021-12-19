@@ -1,21 +1,21 @@
-@import '~@angular/material';
+@use '~@angular/material' as mat;
 @import './styles/variables';
 @import './styles/text';
 
 html, body {
   height: 100%;
-  background-color: $black;
+  background-color: $white;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mat-label {
-  color: $white;
+  color: $gray;
 }
 
 input.mat-input-element {
-  color: $white;
+  color: $gray;
 }
 
 mat-icon {
-  color: $white;
+  color: $gray;
 }

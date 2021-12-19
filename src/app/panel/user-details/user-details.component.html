@@ -1,0 +1,25 @@
+<div class="container">
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Podstawowe informacje
+      </mat-panel-title>
+      <mat-panel-description>
+        Podstawowe informacje o zalogowanym użytkowniku
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-user-details-display-element [key]="'Imie'" [value]="'Kacper'"></app-user-details-display-element>
+    <app-user-details-display-element [key]="'Nazwisko'" [value]="'Czajkowski'"></app-user-details-display-element>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="lab-worker-details">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Informacje o laboratorium
+      </mat-panel-title>
+      <mat-panel-description>
+        Informacje o miejscu zatrudnienia
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</div>

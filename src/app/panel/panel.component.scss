@@ -1,0 +1,15 @@
+.toolbar-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttons-group {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-button {
+  background-color: antiquewhite;
+  color: #c2185b;
+}
