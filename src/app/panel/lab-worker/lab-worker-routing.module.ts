@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LabWorkerComponent } from "./lab-worker.component";
+import { LabWorkerPanelComponent } from "./lab-worker-panel.component";
+import { EditTestsResultComponent } from "./edit-tests-result/edit-tests-result.component";
+import { MainPanelComponent } from "./main-panel/main-panel.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: LabWorkerComponent,
+    component: LabWorkerPanelComponent,
     children: [
-      { path: 'main', component: LabWorkerComponent },
-      { path: '', redirectTo: 'main', pathMatch: 'full' },
+      {
+        path: 'main',
+        component: MainPanelComponent
+      },
+      {
+        path: 'edit',
+        component: EditTestsResultComponent
+      },
+      { path: '**', redirectTo: 'main', pathMatch: 'full' },
     ]
   }
 ];

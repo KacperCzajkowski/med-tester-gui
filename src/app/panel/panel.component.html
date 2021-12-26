@@ -3,10 +3,10 @@
     <mat-toolbar-row class="toolbar-flex">
       <span>Medtester</span>
       <div class="buttons-group">
-        <button mat-button class="menu-button">Panel</button>
+        <button mat-button class="menu-button" [routerLink]="'/panel/lab-worker'">Panel</button>
         <button mat-button class="menu-button">Moje badania</button>
-        <button mat-button class="menu-button">Konto</button>
-        <button mat-button class="menu-button">Wyloguj</button>
+        <button mat-button class="menu-button" [routerLink]="'/panel/user-details'">Konto</button>
+        <button mat-button class="menu-button" (click)="logout()">Wyloguj</button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

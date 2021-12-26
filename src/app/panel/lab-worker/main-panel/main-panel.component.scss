@@ -1,0 +1,13 @@
+.buttons-aggregator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.operation-button {
+  background-color: antiquewhite;
+  color: #c2185b;
+  height: 5rem;
+}

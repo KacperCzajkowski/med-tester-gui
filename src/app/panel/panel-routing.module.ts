@@ -8,14 +8,14 @@ const routes: Routes = [
     component: PanelComponent,
     children: [
       {
-        path: 'lab-worker',
-        loadChildren: () => import('./lab-worker/lab-worker.module').then(m => m.LabWorkerModule),
-      },
-      {
         path: 'user-details',
         loadChildren: () => import('./user-details/user-details.module').then(m => m.UserDetailsModule),
       },
-      { path: '', redirectTo: 'user-details', pathMatch: 'full' },
+      {
+        path: 'lab-worker',
+        loadChildren: () => import('./lab-worker/lab-worker.module').then(m => m.LabWorkerModule),
+      },
+      { path: '', redirectTo: 'lab-worker', pathMatch: 'full' },
     ]
   }
 ];

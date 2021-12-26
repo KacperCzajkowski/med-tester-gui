@@ -1,0 +1,12 @@
+.full-width {
+  width: 100%;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+
+  .input-color {
+    color: white;
+  }
+}
