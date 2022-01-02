@@ -1,0 +1,6 @@
+<div class="details-item">
+  <div>{{ key | userDetailsKey}}:</div>
+  <div *ngIf="key !== 'gender'; else gender">{{ value }}</div>
+  <ng-template #gender>{{ value | gender }}</ng-template>
+</div>
+<mat-divider></mat-divider>

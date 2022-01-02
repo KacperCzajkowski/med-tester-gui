@@ -1,3 +1,4 @@
 export enum TestsResultStatus {
-  InProgress = 'in-progress'
+  InProgress = 'in-progress',
+  Done = 'done'
 }

@@ -1,0 +1,42 @@
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <div style="display: flex; flex-direction: row; gap: 2rem; font-size: 28px">
+    <div>{{ test.name }}</div>
+    <div> - </div>
+    <div>{{ test.icdCode }}</div>
+  </div>
+  <div style="display: flex; flex-direction: row">
+    <button mat-button color="primary" (click)="elementRemoved.emit(true)">Usuń badanie</button>
+    <button mat-button color="primary" (click)="add()">Dodaj wskaźnik</button>
+    <button mat-button color="primary" (click)="editTest()">Edytuj test</button>
+  </div>
+</div>
+<table mat-table [dataSource]="test.indicators" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="result">
+    <th mat-header-cell *matHeaderCellDef> Wynik </th>
+    <td mat-cell *matCellDef="let element"> {{element.result}} </td>
+  </ng-container>
+  <ng-container matColumnDef="unit">
+    <th mat-header-cell *matHeaderCellDef> Jednostka </th>
+    <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
+  </ng-container>
+  <ng-container matColumnDef="referenceRangeMin">
+    <th mat-header-cell *matHeaderCellDef> Zasięg referencyjny - min </th>
+    <td mat-cell *matCellDef="let element"> {{element.referenceRange.min ?? '-'}} </td>
+  </ng-container>
+  <ng-container matColumnDef="referenceRangeMax">
+    <th mat-header-cell *matHeaderCellDef> Zasięg referencyjny - max </th>
+    <td mat-cell *matCellDef="let element"> {{element.referenceRange.max ?? '-'}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns; let i = index"
+    (click)="openEditModal(i)"
+  ></tr>
+</table>
+<mat-divider style="border-top-width: 3px; background-color: gray"></mat-divider>

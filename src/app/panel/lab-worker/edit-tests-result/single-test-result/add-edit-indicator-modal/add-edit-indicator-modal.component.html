@@ -1,0 +1,60 @@
+<ng-container [ngSwitch]="data.status">
+  <h2 *ngSwitchCase="status.Add" mat-dialog-title>Dodaj wskaźnik</h2>
+  <h2 *ngSwitchCase="status.Edit" mat-dialog-title>Edytuj wskaźnik</h2>
+</ng-container>
+<mat-dialog-content class="mat-typography dialog-content">
+  <form>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Nazwa</mat-label>
+      <input type="text"
+             matInput
+             class="input-color"
+             [formControl]="form.name"
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Wynik</mat-label>
+      <input type="number"
+             matInput
+             class="input-color"
+             [formControl]="form.result"
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Jednostka</mat-label>
+      <input type="text"
+             matInput
+             class="input-color"
+             [formControl]="form.unit"
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Wartość minimalna</mat-label>
+      <input matInput
+             type="number"
+             min="0"
+             class="input-color"
+             [formControl]="form.min"
+      >
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Wartość maksymalna</mat-label>
+      <input type="number"
+             matInput
+             min="0"
+             class="input-color"
+             [formControl]="form.max"
+      >
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Anuluj</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    [disabled]="!form.valid"
+    (click)="submit()"
+  >Zapisz
+  </button>
+</mat-dialog-actions>

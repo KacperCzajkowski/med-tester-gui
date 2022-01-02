@@ -2,6 +2,6 @@ import { Indicator } from "./indicator";
 
 export interface SingleTest {
   name: string;
-  icdConde: string;
+  icdCode: string;
   indicators: Indicator[];
 }

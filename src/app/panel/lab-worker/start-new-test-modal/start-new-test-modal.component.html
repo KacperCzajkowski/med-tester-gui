@@ -10,6 +10,9 @@
                [matAutocomplete]="auto"
                class="input-color"
         >
+        <mat-error *ngIf="control.hasError">
+          Wprowadzono złe dane
+        </mat-error>
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredUsers" [value]="option.pesel">
             <span>{{option.fullName}}</span> |
