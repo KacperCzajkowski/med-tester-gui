@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { filter, switchMap, take } from "rxjs/operators";
 import { of } from "rxjs";
 import { StartNewTestModalComponent } from "../start-new-test-modal/start-new-test-modal.component";
+import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";
+import { UserRoles } from "../../../shared/api/user-roles";
 
 @Component({
   selector: 'app-main-panel',
@@ -17,9 +19,11 @@ export class MainPanelComponent {
     private readonly matDialog: MatDialog,
     private readonly usersService: UsersService,
     private readonly testsResultService: TestsResultService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
   }
+
+  roles = UserRoles;
 
   startNewTest(): void {
     this.testsResultService.checkIfAnyResultIsInProgress().pipe(
@@ -40,5 +44,19 @@ export class MainPanelComponent {
     ).subscribe(() => {
       this.router.navigate(['/panel/lab-worker/edit']);
     });
+  }
+
+  createUser(userRole: UserRoles): void {
+    const ref = this.matDialog.open(CreateUserDialogComponent, {
+      data: {
+        role: userRole
+      }
+    });
+
+    ref.afterClosed().pipe(
+      take(1),
+      switchMap(value => this.usersService.add(value)),
+      take(1)
+    ).subscribe();
   }
 }

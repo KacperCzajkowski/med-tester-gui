@@ -21,32 +21,39 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatTableModule } from "@angular/material/table";
 import { AddEditIndicatorModalComponent } from './edit-tests-result/single-test-result/add-edit-indicator-modal/add-edit-indicator-modal.component';
 import { AcceptRemovingTestDialogComponent } from './edit-tests-result/accept-removing-test-dialog/accept-removing-test-dialog.component';
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import { MatRadioModule } from "@angular/material/radio";
 
 
 @NgModule({
-  declarations: [
-    LabWorkerPanelComponent,
-    StartNewTestModalComponent,
-    EditTestsResultComponent,
-    MainPanelComponent,
-    AddSingleTestModalComponent,
-    SingleTestResultComponent,
-    AddEditIndicatorModalComponent,
-    AcceptRemovingTestDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    LabWorkerRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatOptionModule,
-    ReactiveFormsModule,
-    SharedModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatTableModule,
-  ],
+    declarations: [
+        LabWorkerPanelComponent,
+        StartNewTestModalComponent,
+        EditTestsResultComponent,
+        MainPanelComponent,
+        AddSingleTestModalComponent,
+        SingleTestResultComponent,
+        AddEditIndicatorModalComponent,
+        AcceptRemovingTestDialogComponent,
+        CreateUserDialogComponent
+    ],
+    imports: [
+        CommonModule,
+        LabWorkerRoutingModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        ReactiveFormsModule,
+        SharedModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatTableModule,
+        MatRadioModule,
+    ],
+    exports: [
+        SingleTestResultComponent
+    ]
 })
 export class LabWorkerModule { }

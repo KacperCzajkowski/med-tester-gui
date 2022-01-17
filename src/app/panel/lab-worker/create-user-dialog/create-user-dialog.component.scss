@@ -1,0 +1,19 @@
+.full-width {
+  width: 100%;
+  height: 80px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+
+  .input-color {
+    color: white;
+  }
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

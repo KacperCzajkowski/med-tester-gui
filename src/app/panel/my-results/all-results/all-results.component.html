@@ -1,0 +1,31 @@
+<ng-container *ngIf="testsResults$ | async as results">
+  <table mat-table [dataSource]="results" class="mat-elevation-z8" style="width: 100%">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Identyfikator</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="labWorker">
+      <th mat-header-cell *matHeaderCellDef>Osoba wystawiająca</th>
+      <td mat-cell *matCellDef="let element"> {{element.labWorkerFullName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="labName">
+      <th mat-header-cell *matHeaderCellDef>Nazwa laboratorium</th>
+      <td mat-cell *matCellDef="let element"> {{element.labName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Data wystawienia</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+    </ng-container>
+    <ng-container matColumnDef="testsCount">
+      <th mat-header-cell *matHeaderCellDef>Liczba badań</th>
+      <td mat-cell *matCellDef="let element"> {{element.testsCount}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns; let i = index"
+      (click)="openResult(row.id)"
+    ></tr>
+  </table>
+</ng-container>

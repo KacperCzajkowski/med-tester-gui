@@ -11,6 +11,15 @@ export class UserDetailsKeyPipe implements PipeTransform {
     ['email', 'Email'],
     ['pesel', 'Pesel'],
     ['gender', 'Płeć'],
+    ['createdAt', 'Utworzony dnia'],
+    ['updatedAt', 'Ostatnio aktualizowany dnia'],
+    ['laboratoryId', 'Identyfikator laboratorium'],
+    ['laboratoryName', 'Nazwa laboratorium'],
+    ['laboratoryCreatedAt', 'Stworzone dnia'],
+    ['labWorkerId', 'Identyfikator osoby wystawiającej'],
+    ['fullName', 'Imię i nazwisko'],
+    ['labName', 'Nazwa laboratorium'],
+    ['labId', 'Identyfikator laboratorium']
   ]);
 
   transform(value: unknown, ...args: unknown[]): string {

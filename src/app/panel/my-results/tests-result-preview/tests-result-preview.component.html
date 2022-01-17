@@ -1,0 +1,37 @@
+<ng-container *ngIf="testsResult$ | async as testsResult">
+  <div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Informacje o badaniu
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-user-details-display-element [key]="'id'" [value]="testsResult.id"></app-user-details-display-element>
+      <app-user-details-display-element [key]="'createdAt'" [value]="testsResult.createdAt"></app-user-details-display-element>
+      <app-user-details-display-element [key]="'updatedAt'" [value]="testsResult.updatedAt"></app-user-details-display-element>
+    </mat-expansion-panel>
+  </div>
+  <div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Informacje o laboratorium
+        </mat-panel-title>
+        <mat-panel-description>
+          Podstawowe informacje o pracowniku i placówce
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-user-details-display-element *ngFor="let item of getKeysToPrint(testsResult.labWorkerDetails)"
+                                        [key]="item[0]"
+                                        [value]="item[1]"
+      ></app-user-details-display-element>
+    </mat-expansion-panel>
+  </div>
+  <div style="width: 100%; margin-top: 20px;">
+    <app-single-test-result
+      *ngFor="let test of testsResult.results"
+      style="margin-bottom: 20px"
+      [test]="test">
+    </app-single-test-result>
+  </div>
+</ng-container>

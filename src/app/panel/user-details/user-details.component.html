@@ -1,4 +1,7 @@
-<div class="container">
+<div
+  *ngIf="userDetails$ | async as details"
+  class="container"
+>
   <mat-expansion-panel expanded>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -8,10 +11,17 @@
         Podstawowe informacje o zalogowanym użytkowniku
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <app-user-details-display-element [key]="'Imie'" [value]="'Kacper'"></app-user-details-display-element>
-    <app-user-details-display-element [key]="'Nazwisko'" [value]="'Czajkowski'"></app-user-details-display-element>
+    <app-user-details-display-element
+      *ngFor="let item of getUserDetails(details)"
+      [key]="item[0]"
+      [value]="item[1]"
+    >
+    </app-user-details-display-element>
   </mat-expansion-panel>
-  <mat-expansion-panel class="lab-worker-details">
+  <mat-expansion-panel
+    *ngIf="details.labDetails !== null"
+    class="lab-worker-details"
+  >
     <mat-expansion-panel-header>
       <mat-panel-title>
         Informacje o laboratorium
@@ -20,6 +30,10 @@
         Informacje o miejscu zatrudnienia
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    <app-user-details-display-element
+      *ngFor="let item of getLabDetails(details.labDetails)"
+      [key]="item[0]"
+      [value]="item[1]"
+    ></app-user-details-display-element>
   </mat-expansion-panel>
 </div>

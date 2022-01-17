@@ -15,7 +15,11 @@ const routes: Routes = [
         path: 'lab-worker',
         loadChildren: () => import('./lab-worker/lab-worker.module').then(m => m.LabWorkerModule),
       },
-      { path: '', redirectTo: 'lab-worker', pathMatch: 'full' },
+      {
+        path: 'my-results',
+        loadChildren: () => import('./my-results/my-results.module').then(m => m.MyResultsModule),
+      },
+      { path: '', redirectTo: 'user-details', pathMatch: 'full' },
     ]
   }
 ];

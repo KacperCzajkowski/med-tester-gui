@@ -1,0 +1,69 @@
+<ng-container *ngIf="data.role === roles.Patient; else labWorker">
+  <h2 mat-dialog-title>Dodaj użytkownika</h2>
+</ng-container>
+<ng-template #labWorker>
+  <h2 mat-dialog-title>Dodaj pracownika laboratorium</h2>
+</ng-template>
+<mat-dialog-content class="mat-typography dialog-content">
+  <form>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Imię</mat-label>
+      <input type="text"
+             matInput
+             class="input-color"
+             [formControl]="form.firstName"
+      >
+      <mat-error *ngIf="form.firstName.errors">
+        Wprowadzono złe dane
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Nazwisko</mat-label>
+      <input type="text"
+             matInput
+             class="input-color"
+             [formControl]="form.lastName"
+      >
+      <mat-error *ngIf="form.lastName.errors">
+        Wprowadzono złe dane
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Email</mat-label>
+      <input type="email"
+             matInput
+             class="input-color"
+             [formControl]="form.email"
+      >
+      <mat-error *ngIf="form.email.errors">
+        Wprowadzono złe dane
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label class="input-color">Pesel</mat-label>
+      <input type="email"
+             matInput
+             class="input-color"
+             [formControl]="form.pesel"
+      >
+      <mat-error *ngIf="form.pesel.errors">
+        Wprowadzono złe dane
+      </mat-error>
+    </mat-form-field>
+    <mat-label class="input-color">Płeć</mat-label>
+    <mat-radio-group [formControl]="form.gender" aria-label="Select an option" class="full-width radio-buttons">
+      <mat-radio-button [value]="genders.MALE">Mężczyzna</mat-radio-button>
+      <mat-radio-button [value]="genders.FEMALE">Kobieta</mat-radio-button>
+    </mat-radio-group>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    [disabled]="!form.valid"
+    (click)="onSave()"
+  >Dodaj
+  </button>
+</mat-dialog-actions>

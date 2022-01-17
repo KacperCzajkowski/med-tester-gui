@@ -1,6 +1,5 @@
 <div class="buttons-aggregator">
   <button mat-button color="primary" class="operation-button" (click)="startNewTest()">Stwórz nowe wyniki</button>
-  <button mat-button color="primary" class="operation-button">Dodaj pracownika</button>
-  <button mat-button color="primary" class="operation-button">Dodaj pacjenta</button>
+  <button mat-button color="primary" class="operation-button" (click)="createUser(roles.LaboratoryWorker)">Dodaj pracownika</button>
+  <button mat-button color="primary" class="operation-button" (click)="createUser(roles.Patient)">Dodaj pacjenta</button>
 </div>
-accept-removing-test-dialog.component.ts

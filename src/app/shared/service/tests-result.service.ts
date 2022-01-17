@@ -29,9 +29,40 @@ export class TestsResultService {
   saveTests(request: SaveSingleTestsRequest): Observable<unknown> {
     return this.httpClient.post<unknown>('/lab-worker/test', request);
   }
+
+  getAllUserTestsResult(): Observable<UserResult[]> {
+    return this.httpClient.get<UserResult[]>('/current-user/results');
+  }
+
+  getTestResultPreview(id: string): Observable<FullTestsResultDetails> {
+    return this.httpClient.get<FullTestsResultDetails>(`/current-user/results/${id}`);
+  }
+}
+
+export interface UserResult {
+  id: string;
+  labWorkerFullName: string;
+  labName: string;
+  createdAt: string;
+  testsCount: number;
 }
 
 export interface SaveSingleTestsRequest {
   status: TestsResultStatus;
   results: SingleTest[];
+}
+
+export interface FullTestsResultDetails {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  labWorkerDetails: LaboratoryWorkerDetails;
+  results: SingleTest[];
+}
+
+export interface LaboratoryWorkerDetails {
+  labWorkerId: string;
+  fullName: string;
+  labName: string;
+  labId: string;
 }
