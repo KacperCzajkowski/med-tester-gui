@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
-import { TestsResultService } from "../../../shared/service/tests-result.service";
-import { PatientDetails } from "../../../shared/api/patient-details";
-import { MatDialog } from "@angular/material/dialog";
+import {Component} from '@angular/core';
+import {TestsResultService} from "../../../shared/service/tests-result.service";
+import {PatientDetails} from "../../../shared/api/patient-details";
+import {MatDialog} from "@angular/material/dialog";
 import {
-  AddSingleTestModalComponent,
+  EditSingleTestModalComponent,
   SingleTestDialogStatus
-} from "./add-single-test-modal/add-single-test-modal.component";
-import { SingleTest } from "../../../shared/api/single-test";
-import { filter, map, switchMap, take, tap } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
-import { TestsResultEditDetails } from "../../../shared/api/tests-result-edit-details";
-import { TestsResultStatus } from "../../../shared/api/tests-result-status";
-import { AcceptRemovingTestDialogComponent } from "./accept-removing-test-dialog/accept-removing-test-dialog.component";
-import { Router } from "@angular/router";
+} from "./edit-single-test-modal/edit-single-test-modal.component";
+import {SingleTest} from "../../../shared/api/single-test";
+import {filter, map, switchMap, take, tap} from "rxjs/operators";
+import {BehaviorSubject} from "rxjs";
+import {TestsResultEditDetails} from "../../../shared/api/tests-result-edit-details";
+import {TestsResultStatus} from "../../../shared/api/tests-result-status";
+import {AcceptRemovingTestDialogComponent} from "./accept-removing-test-dialog/accept-removing-test-dialog.component";
+import {Router} from "@angular/router";
+import {TestTemplateService} from "../../../shared/service/test-template.service";
+import {AddTemplateComponent} from "./add-template/add-template.component";
 
 @Component({
   selector: 'app-edit-tests-result',
@@ -32,7 +34,8 @@ export class EditTestsResultComponent {
   constructor(
     private readonly testsResultService: TestsResultService,
     private readonly matDialog: MatDialog,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly templateService: TestTemplateService
   ) {
   }
 
@@ -41,34 +44,13 @@ export class EditTestsResultComponent {
   }
 
   openModal(): void {
-    const dialogRef = this.matDialog.open(AddSingleTestModalComponent, {
-      width: "500",
-      data: {
-        status: SingleTestDialogStatus.Add
-      }
-    });
-
-    dialogRef.afterClosed().pipe(
+    this.templateService.getAllTestTemplates().pipe(
+      switchMap(templates => this.matDialog.open(AddTemplateComponent, {
+        width: "500",
+        data: templates
+      }).afterClosed()),
       take(1),
-      map(value => {
-        return {
-          name: value.name,
-          icdCode: value.icdCode,
-          indicators: []
-        } as SingleTest;
-      }),
-      map(value => {
-        this.resultsArray$.next([...this.resultsArray$.value, value]);
-
-        return this.resultsArray$.value;
-      }),
-      switchMap(value => {
-        return this.testsResultService.saveTests({
-          status: TestsResultStatus.InProgress,
-          results: value
-        });
-      }),
-      take(1)
+      switchMap(value => this.templateService.addTemplateToTest(value))
     ).subscribe(() => this.refresh$.next(true));
   }
 

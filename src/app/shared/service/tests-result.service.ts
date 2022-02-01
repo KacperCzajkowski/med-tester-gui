@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { TestsResultEditDetails } from "../api/tests-result-edit-details";
 import { SingleTest } from "../api/single-test";
 import { TestsResultStatus } from "../api/tests-result-status";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,13 @@ export class TestsResultService {
 
   getTestResultPreview(id: string): Observable<FullTestsResultDetails> {
     return this.httpClient.get<FullTestsResultDetails>(`/current-user/results/${id}`);
+  }
+
+  downloadPdfById(id: string): Observable<Blob> {
+    // @ts-ignore
+    return this.httpClient.post<Blob>(`/current-user/test/${id}/pdf`, {},  {
+      responseType: 'blob' as 'json',
+    });
   }
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from "@angular/forms";
-import { switchMap, take, takeUntil, tap } from "rxjs/operators";
+import {filter, switchMap, take, takeUntil, tap} from "rxjs/operators";
 import { UsersService } from "../../../shared/service/users.service";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { BasicUserInfo } from "../../../shared/model/basic-user-info";
@@ -24,10 +24,15 @@ export class StartNewTestModalComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.usersService.getUsersByQuery('').pipe(take(1))
-      .subscribe(value => this.filteredUsers$.next(value));
+    this.control.valueChanges.pipe(
+      filter((value: string) => value.length < 2),
+      takeUntil(this.destroy$),
+    ).subscribe(() => {
+      this.filteredUsers$.next([]);
+    });
 
     this.control.valueChanges.pipe(
+      filter((value: string) => value.length >= 2),
       switchMap(value => this.usersService.getUsersByQuery(value)),
       takeUntil(this.destroy$),
     ).subscribe(value => this.filteredUsers$.next(value));

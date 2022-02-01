@@ -27,6 +27,9 @@
       ></app-user-details-display-element>
     </mat-expansion-panel>
   </div>
+  <div style="display: flex; flex-direction: row-reverse">
+    <button mat-button color="primary" (click)="downloadPdf()">Pobierz PDF</button>
+  </div>
   <div style="width: 100%; margin-top: 20px;">
     <app-single-test-result
       *ngFor="let test of testsResult.results"

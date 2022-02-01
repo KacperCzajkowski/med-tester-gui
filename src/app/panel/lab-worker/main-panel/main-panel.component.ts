@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { UsersService } from "../../../shared/service/users.service";
 import { TestsResultService } from "../../../shared/service/tests-result.service";
 import { Router } from "@angular/router";
-import { filter, switchMap, take } from "rxjs/operators";
+import {filter, switchMap, take, tap} from "rxjs/operators";
 import { of } from "rxjs";
 import { StartNewTestModalComponent } from "../start-new-test-modal/start-new-test-modal.component";
 import { CreateUserDialogComponent } from "../create-user-dialog/create-user-dialog.component";

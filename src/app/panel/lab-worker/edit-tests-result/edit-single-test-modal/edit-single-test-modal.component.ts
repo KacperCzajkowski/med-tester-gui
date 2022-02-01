@@ -3,17 +3,17 @@ import { FormControl, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-add-single-test-modal',
-  templateUrl: './add-single-test-modal.component.html',
-  styleUrls: ['./add-single-test-modal.component.scss']
+  selector: 'app-edit-single-test-modal',
+  templateUrl: './edit-single-test-modal.component.html',
+  styleUrls: ['./edit-single-test-modal.component.scss']
 })
-export class AddSingleTestModalComponent implements OnInit {
+export class EditSingleTestModalComponent implements OnInit {
   name = new FormControl('', Validators.required);
   icdCode = new FormControl('', Validators.required);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: SingleTestDialogData,
-    private readonly dialogRef: MatDialogRef<AddSingleTestModalComponent>)
+    private readonly dialogRef: MatDialogRef<EditSingleTestModalComponent>)
   {
   }
 

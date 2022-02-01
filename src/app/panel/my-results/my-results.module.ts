@@ -10,6 +10,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { SharedModule } from "../../shared/shared.module";
 import { SingleTestResultComponent } from './tests-result-preview/single-test-result/single-test-result.component';
 import { MatDividerModule } from "@angular/material/divider";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatDividerModule } from "@angular/material/divider";
         MatTableModule,
         MatExpansionModule,
         SharedModule,
-        MatDividerModule
+        MatDividerModule,
+        MatButtonModule
     ]
 })
 export class MyResultsModule { }

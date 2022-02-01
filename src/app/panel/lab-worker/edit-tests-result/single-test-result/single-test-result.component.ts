@@ -5,11 +5,11 @@ import { Indicator } from "../../../../shared/api/indicator";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEditIndicatorModalComponent } from "./add-edit-indicator-modal/add-edit-indicator-modal.component";
 import { IndicatorDialogStatus } from "./add-edit-indicator-modal/indicator-dialog-status";
-import { take } from "rxjs/operators";
+import {filter, take, tap} from "rxjs/operators";
 import {
-  AddSingleTestModalComponent,
+  EditSingleTestModalComponent,
   SingleTestDialogStatus
-} from "../add-single-test-modal/add-single-test-modal.component";
+} from "../edit-single-test-modal/edit-single-test-modal.component";
 
 @Component({
   selector: 'app-single-test-result',
@@ -59,14 +59,17 @@ export class SingleTestResultComponent {
       }
     });
 
-    ref.afterClosed().pipe(take(1)).subscribe(value => {
+    ref.afterClosed().pipe(
+      take(1),
+      filter(value => value)
+    ).subscribe(value => {
       this.test.indicators[index] = value;
       this.refresh();
     })
   }
 
   editTest() {
-    const ref = this.matDialog.open(AddSingleTestModalComponent, {
+    const ref = this.matDialog.open(EditSingleTestModalComponent, {
       width: "500",
       data: {
         status: SingleTestDialogStatus.Edit,
@@ -77,6 +80,7 @@ export class SingleTestResultComponent {
 
     ref.afterClosed().pipe(
       take(1),
+      filter(value => value)
     ).subscribe(value => {
       this.test.name = value.name;
       this.test.icdCode = value.icdCode;

@@ -15,7 +15,7 @@ import { MainPanelComponent } from './main-panel/main-panel.component';
 import { SharedModule } from "../../shared/shared.module";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { UserDetailsModule } from "../user-details/user-details.module";
-import { AddSingleTestModalComponent } from './edit-tests-result/add-single-test-modal/add-single-test-modal.component';
+import { EditSingleTestModalComponent } from './edit-tests-result/edit-single-test-modal/edit-single-test-modal.component';
 import { SingleTestResultComponent } from './edit-tests-result/single-test-result/single-test-result.component';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatTableModule } from "@angular/material/table";
@@ -23,6 +23,8 @@ import { AddEditIndicatorModalComponent } from './edit-tests-result/single-test-
 import { AcceptRemovingTestDialogComponent } from './edit-tests-result/accept-removing-test-dialog/accept-removing-test-dialog.component';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 import { MatRadioModule } from "@angular/material/radio";
+import { AddTemplateComponent } from './edit-tests-result/add-template/add-template.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -31,27 +33,29 @@ import { MatRadioModule } from "@angular/material/radio";
         StartNewTestModalComponent,
         EditTestsResultComponent,
         MainPanelComponent,
-        AddSingleTestModalComponent,
+        EditSingleTestModalComponent,
         SingleTestResultComponent,
         AddEditIndicatorModalComponent,
         AcceptRemovingTestDialogComponent,
-        CreateUserDialogComponent
+        CreateUserDialogComponent,
+        AddTemplateComponent
     ],
-    imports: [
-        CommonModule,
-        LabWorkerRoutingModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatOptionModule,
-        ReactiveFormsModule,
-        SharedModule,
-        MatExpansionModule,
-        MatDividerModule,
-        MatTableModule,
-        MatRadioModule,
-    ],
+  imports: [
+    CommonModule,
+    LabWorkerRoutingModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatOptionModule,
+    ReactiveFormsModule,
+    SharedModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatTableModule,
+    MatRadioModule,
+    MatSelectModule,
+  ],
     exports: [
         SingleTestResultComponent
     ]
