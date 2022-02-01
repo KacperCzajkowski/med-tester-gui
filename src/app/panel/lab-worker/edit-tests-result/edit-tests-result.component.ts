@@ -46,7 +46,7 @@ export class EditTestsResultComponent {
   openModal(): void {
     this.templateService.getAllTestTemplates().pipe(
       switchMap(templates => this.matDialog.open(AddTemplateComponent, {
-        width: "500",
+        width: "500px",
         data: templates
       }).afterClosed()),
       take(1),

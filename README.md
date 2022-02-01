@@ -22,3 +22,6 @@ make up_daemon
 ```
 
 Żeby aplikacja działała prawidłowo, API musi być włączone.
+
+Uwaga! W przypadku problemu uruchomienia aplikacji w przeglądarce należy uruchomić przeglądarkę Chrome przy użyciu komendy:
+```chrome  --ignore-certificate-errors```
