@@ -9,16 +9,16 @@ Pierwsze uruchomienie projektu:
 make build
 ```
 
+Należy dodać do pliku /etc/hosts domenę "medtester.dev" oraz "api.medtester.dev".
+
 Uruchomienie kontenera
 ```
 make up
 ```
-
-**Po uruchomieniu aplikacja jest dostępna pod adresem ```localhost:15151```**
-
 
 Uruchomienie kontenera jako demon
 ```
 make up_daemon
 ```
 
+Żeby aplikacja działała prawidłowo, API musi być włączone.

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SingleTest } from "../../../../shared/api/single-test";
 
 @Component({
@@ -6,14 +6,9 @@ import { SingleTest } from "../../../../shared/api/single-test";
   templateUrl: './single-test-result.component.html',
   styleUrls: ['./single-test-result.component.scss']
 })
-export class SingleTestResultComponent implements OnInit {
+export class SingleTestResultComponent {
   @Input()
   test!: SingleTest
 
   displayedColumns: string[] = ['name', 'result', 'unit', 'referenceRangeMin', 'referenceRangeMax'];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
